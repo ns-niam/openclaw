@@ -231,6 +231,7 @@ main model can read the screenshot directly.
 - To proxy the managed browser itself, pass explicit Chrome proxy flags through `browser.extraArgs`, such as `--proxy-server=...` or `--proxy-pac-url=...`. Strict SSRF mode blocks explicit browser proxy routing unless private-network browser access is intentionally enabled.
 - When `browser.ssrfPolicy` is absent, unrestricted same-host agents may open any loopback port in OpenClaw-owned local Chrome. Any explicit policy, including `{}`, disables this automatic exception. See [Local preview access](/tools/browser/security#local-preview-access).
 - `browser.ssrfPolicy.dangerouslyAllowPrivateNetwork` is off by default; enable only when private-network browser access is intentionally trusted.
+- Explicitly setting `browser.ssrfPolicy.dangerouslyAllowPrivateNetwork: false` enables strict mode, which can require IP-literal URLs for hostname navigation unless the host is explicitly allowed; leaving the key unset keeps private destinations blocked without enabling that strict hostname behavior.
 - `browser.ssrfPolicy.allowedHostnames` grants exact hosts while the rest of the private network remains blocked.
 - `browser.ssrfPolicy.allowRfc2544BenchmarkRange` and `browser.ssrfPolicy.allowIpv6UniqueLocalRange` narrowly allow trusted fake-IP proxy ranges.
 
